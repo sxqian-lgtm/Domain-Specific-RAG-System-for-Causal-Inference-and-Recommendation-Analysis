@@ -1,0 +1,11 @@
+ATT and ATE answer related but different causal questions. The average treatment effect,
+ATE, is the average effect if everyone in the target population received treatment instead
+of control. The average treatment effect on the treated, ATT, focuses only on units that
+actually received treatment. ATT is often more realistic in product or recommendation
+settings because treatment assignment is rarely random across the whole population. For
+example, if a recommendation system is rolled out first to a subset of users, ATT asks how
+much the system changed outcomes for those exposed users. ATE asks what would happen if the
+same treatment logic were extended to all users. The distinction matters when treated users
+differ systematically from untreated users. In those cases, ATT may be easier to estimate
+credibly, while ATE may require stronger assumptions about transportability and overlap.
+

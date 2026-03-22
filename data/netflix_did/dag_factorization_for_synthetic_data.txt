@@ -1,0 +1,10 @@
+One useful project idea from the team notes is that each DAG corresponds to a factorization of
+the joint distribution of the variables. For a simple example with age, recommendation-system
+assignment, and minutes viewed, the graph implies that the joint distribution can be written as
+the outcome conditional on age and recommendation system, multiplied by the marginal
+distribution of age and the marginal distribution of treatment assignment. This matters because
+it forces the team to think concretely about how the synthetic data is generated. Instead of
+treating the CSV as a black box, the project uses the DAG to determine what variables depend on
+what other variables, and then chooses distributions accordingly. This strengthens the causal
+story behind the data and makes the project more defensible than a purely ad hoc simulation.
+

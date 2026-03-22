@@ -1,0 +1,11 @@
+Teaching material on DID often contrasts the correct design with two naive alternatives. The
+first naive approach ignores the control group and compares only the treated group's outcome
+before and after treatment. This can be misleading because time-varying background factors may
+change the outcome even without treatment. The second naive approach ignores the pre-treatment
+period and compares treated and untreated units only in the post period. This can also be
+misleading because baseline differences between groups may reflect confounding rather than
+treatment effects. DID improves on both naive approaches by combining time comparison and group
+comparison. In effect, it adjusts the treated group's before-after change by the control
+group's time trend. This is why DID is often introduced as a design that corrects weaknesses in
+simple before-after and simple treated-versus-control comparisons.
+

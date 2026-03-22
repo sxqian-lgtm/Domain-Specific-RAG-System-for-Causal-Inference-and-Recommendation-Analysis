@@ -1,0 +1,10 @@
+Conditional parallel trends is a refinement of the standard DID assumption. Instead of assuming
+that treated and control groups would follow the same untreated trend on average, it assumes
+that they would do so after conditioning on observed covariates. This is often more plausible
+because units with the same covariates may be better comparisons than the raw groups overall.
+For example, in a recommendation project, similarity may depend on prior engagement,
+subscription type, age, or content preference. Under conditional parallel trends, the DID logic
+still works, but the comparison is made within comparable covariate profiles. This idea also
+opens the door to regression-based and weighting-based DID estimators that explicitly use
+covariates to improve identification.
+

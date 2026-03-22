@@ -1,0 +1,11 @@
+The Netflix presentation defines a simple causal structure for the recommendation study.
+Covariates include age, genre preference, and major release context. Treatment is a binary
+indicator for whether the user was exposed to the recommendation system. Outcomes are
+minutes viewed before and after treatment, represented in the project as baseline viewing
+and post treatment viewing measures. The presentation explicitly notes that treatment
+assignment is non random, which means raw differences between treated and untreated users
+cannot be interpreted causally without adjustment. This variable design is a good teaching
+example because it mirrors a common product analytics setting: user features affect both
+who gets a feature and how much content they consume. A domain specific RAG assistant can
+use this structure to explain why covariates matter and why a causal design is needed.
+

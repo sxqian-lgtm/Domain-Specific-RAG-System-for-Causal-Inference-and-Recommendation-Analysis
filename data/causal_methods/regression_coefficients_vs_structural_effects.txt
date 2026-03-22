@@ -1,0 +1,11 @@
+One subtle lesson from the primer is that regression coefficients are not automatically the
+same as causal or structural effects. A regression slope measures association after whatever
+conditioning is implicit in the model specification. A structural parameter, by contrast,
+describes how the outcome would change under a causal intervention in the data generating
+system. These quantities coincide only under specific assumptions. This distinction matters in
+linear models because analysts often read a coefficient table as if every coefficient were a
+causal effect. Chapter 3 pushes students to separate predictive fit from causal meaning. In a
+recommendation project, a positive coefficient on the recommender variable does not by itself
+prove that the recommender increased viewing time. The interpretation depends on whether the
+chosen controls block confounding and avoid post treatment bias.
+

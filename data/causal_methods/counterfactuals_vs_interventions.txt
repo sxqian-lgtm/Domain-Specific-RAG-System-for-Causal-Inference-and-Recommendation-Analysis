@@ -1,0 +1,10 @@
+Interventional and counterfactual questions are related but not identical. An interventional
+question asks about the outcome distribution if a treatment were set to a value across a
+population or policy scenario. A counterfactual question asks what the outcome would have been
+for the same unit, given what is already known about that unit, under a different action.
+This means counterfactuals condition on factual evidence in a way that standard intervention
+queries do not. In applied work, the difference matters when analysts move from policy
+evaluation to case specific explanation. A DID estimate may answer the average policy style
+question, while a counterfactual framework is better suited to questions about why a specific
+outcome happened or how an individual case might have changed under a different decision.
+

@@ -1,0 +1,33 @@
+Why can naive DID be biased
+What assumptions does DID rely on
+Why is DID considered a quasi experimental method
+How is DID different from a simple before after comparison
+How is DID different from a cross sectional treated versus control comparison
+How can DID be written as an OLS style regression
+Explain ATT versus ATE
+How does IPW adjust for confounders
+Why is correlation not enough for causal claims
+What does d separation mean in a causal graph
+Why can conditioning on a collider create bias
+What is the backdoor criterion
+What is the front door criterion
+What is the difference between P Y given X and P Y given do X
+Why are regression coefficients not always causal effects
+What is a counterfactual question
+How are counterfactual questions different from intervention questions
+What is the no anticipation assumption in DID
+What is conditional parallel trends
+What is positivity in DID
+What is TWFE in DID
+What is a weighting based DID estimator
+What is synthetic control
+What are common biases that can still affect DID
+What variables are included in the Netflix recommendation case
+Why is a control group needed in the Netflix viewing analysis
+What is the DID estimate in the synthetic Netflix style data
+Why is before after analysis not enough for evaluating the recommender
+How does the Netflix project connect business questions to causal inference
+Why is the treatment assignment in the Netflix case not purely random
+Why does overlap matter in a recommender rollout
+Why should a team define the DAG before simulating synthetic data
+How does this RAG system support causal AI analysis

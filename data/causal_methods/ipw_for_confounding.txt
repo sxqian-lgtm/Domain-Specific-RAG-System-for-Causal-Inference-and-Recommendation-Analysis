@@ -1,0 +1,11 @@
+Inverse probability weighting, IPW, is a causal adjustment method that reweights
+observations so the treated and untreated groups look more comparable on observed
+confounders. The basic idea is to estimate each unit's probability of receiving treatment
+given covariates, often called the propensity score, and then assign larger weights to
+units that were unlikely to receive the treatment they actually got. This creates a
+weighted pseudo population in which treatment is less entangled with observed covariates.
+IPW is useful when treatment assignment is non random but the analyst believes the key
+confounders have been measured. It does not solve bias from unobserved confounding, and it
+can become unstable when propensity scores are very close to zero or one. In practice, IPW
+is often paired with overlap checks, weight trimming, and balance diagnostics.
+

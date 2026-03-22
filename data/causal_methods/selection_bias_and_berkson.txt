@@ -1,0 +1,10 @@
+Selection bias often arises when the sample itself depends on variables that are influenced by
+multiple upstream causes. In graphical terms, this is closely related to conditioning on a
+collider or on a descendant of a collider. The primer connects this idea to Berkson's paradox:
+two variables that are independent in the population can become associated after restricting the
+analysis to a selected subgroup. This matters because many applied analyses do not only work
+with naturally observed populations. They work with filtered samples, active users, retained
+subscribers, or observed cases. In those settings, apparent relationships may be created by the
+selection process itself rather than by a genuine causal connection. This concept is highly
+relevant in recommendation analytics, where sample restrictions can easily distort conclusions.
+

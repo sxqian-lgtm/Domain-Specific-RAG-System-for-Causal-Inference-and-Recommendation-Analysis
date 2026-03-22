@@ -1,0 +1,11 @@
+A domain specific RAG system is useful for causal analysis because the questions analysts
+ask are repetitive, assumption heavy, and easy to answer inconsistently from memory. A
+single workflow may need definitions of DID and IPW, reminders about ATT versus ATE,
+project specific variable descriptions, and interpretation of synthetic or experimental
+results. By retrieving curated project notes and method summaries before generation, the
+system can produce answers that are more grounded and more consistent with the team's
+actual analysis design. This is especially valuable in recommendation projects, where the
+same business question can mix product context with methodological concerns. RAG does not
+replace causal design, but it can improve the quality and speed of explanation, review, and
+communication.
+

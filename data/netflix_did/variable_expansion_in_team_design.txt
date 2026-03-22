@@ -1,0 +1,10 @@
+The team discussion suggests expanding the synthetic Netflix-style dataset beyond only age,
+treatment assignment, and minutes viewed. Proposed variables include device type, past minutes
+viewed as a pre-treatment measure, genre preference, subscription type such as monthly versus
+yearly, continued subscription status, major release context, and a baseline engagement
+variable. This is a strong project move because recommendation outcomes are rarely driven by a
+single treatment alone. User behavior depends on prior engagement, content taste, subscription
+status, and platform context. Including these variables in the synthetic design creates a more
+realistic causal graph and gives the later DID analysis a clearer interpretation. It also helps
+the RAG system answer project questions about why particular variables appear in the case.
+

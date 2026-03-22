@@ -1,0 +1,11 @@
+The provided synthetic CSV contains 15000 observations for 5000 users and includes user
+level features together with pre and post indicators. Key columns include age, device type,
+yearly subscription status, genre preference, a baseline engagement variable, treatment
+assignment through rec_syst, a time index t, a post indicator, a major release context
+flag, and the outcome minutes_viewed. This schema is well suited for a teaching case in
+causal recommendation analysis because it combines behavioral covariates with a treatment
+indicator and repeated timing information. It also gives the project a bridge between
+business terminology and causal terminology. For example, rec_syst maps naturally to
+treatment, while minutes_viewed is the outcome of interest. The dataset can support simple
+DID calculations, regression adjustment, and discussion of confounding.
+

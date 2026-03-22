@@ -1,0 +1,10 @@
+DID can be estimated not only through regression but also through weighting. In the
+covariate-adjusted DID setting, weighting methods use the propensity score to reweight the
+observed changes over time so that treated and control units become more comparable. This can be
+preferable when the propensity model is simpler or more trustworthy than directly modeling the
+outcome trend. The basic idea is similar to IPW in standard causal inference, but now the
+weighted quantity is often the change from pre to post. This matters because it gives analysts
+more than one estimation path under conditional parallel trends. In practice, weighting-based
+DID is useful when the team wants a less restrictive alternative to a heavily parameterized
+regression model.
+

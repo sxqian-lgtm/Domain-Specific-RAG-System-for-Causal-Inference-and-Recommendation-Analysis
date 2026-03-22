@@ -1,0 +1,11 @@
+This project can be framed as technical support for a broader causal AI workflow rather
+than only as a chatbot. The system retrieves method explanations, project notes, and case
+specific assumptions so analysts can ground their reasoning before reporting conclusions.
+In that role, the RAG layer acts as a memory and reasoning aid for causal analysis in
+recommendation settings. It helps connect business questions such as whether a recommender
+increased engagement with methodological questions such as whether the identifying
+assumptions are plausible. This framing is useful for portfolio and resume presentation
+because it shows that the project is not merely about LLM integration. It is about building
+a domain specific assistant that supports technical analysis, interpretation, and clearer
+communication around causal evidence.
+

@@ -1,0 +1,9 @@
+Difference-in-differences is often described as a quasi-experimental method because it tries
+to mimic the logic of an experiment using observational data. Instead of random assignment, it
+relies on a treatment group and a control group observed over time, with at least one
+pre-treatment period and one post-treatment period. The treatment effect is estimated by
+comparing how outcomes change over time in the treated group relative to how they change in the
+control group. This makes DID stronger than a simple cross-sectional comparison and stronger
+than a simple before-after comparison. However, it is still not a true experiment, which is why
+its validity depends on assumptions such as parallel trends and a credible comparison group.
+

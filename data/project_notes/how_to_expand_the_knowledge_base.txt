@@ -1,0 +1,10 @@
+The best way to expand this project's knowledge base is not to dump more raw files directly
+into retrieval. The better workflow is to keep source materials in raw_private, read them for
+new concepts, then convert the useful parts into short topic-specific text chunks stored under
+causal_methods, netflix_did, or project_notes. A good new chunk should answer one question
+clearly, explain why the concept matters, and connect back to the current project when
+possible. This workflow improves retrieval quality because the index stores focused concepts
+instead of noisy raw pages. It also keeps the public project repository cleaner and easier to
+explain. In practice, this means new PDFs, slides, or team notes should be treated as source
+material for chunk creation, not as the final retrieval layer themselves.
+

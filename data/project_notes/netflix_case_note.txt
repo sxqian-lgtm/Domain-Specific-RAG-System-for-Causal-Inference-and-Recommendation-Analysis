@@ -1,0 +1,6 @@
+In a recommendation-system project, causal analysis helps separate correlation from genuine
+incremental impact. A business lift observed after a product change does not automatically
+imply causality because user composition, seasonality, and simultaneous experiments may also
+shift outcomes. A domain-specific RAG system can support analysts by retrieving project notes,
+method explanations, and case-specific assumptions before generating a grounded answer.
+

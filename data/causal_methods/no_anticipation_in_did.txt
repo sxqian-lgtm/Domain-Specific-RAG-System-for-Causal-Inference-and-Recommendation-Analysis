@@ -1,0 +1,9 @@
+An important DID assumption is no anticipation. This means treatment assignment should not
+change the pre-treatment outcome. In other words, units should not begin responding to the
+future treatment before the treatment actually starts. If people adjust their behavior in
+advance, then the pre-treatment period is already contaminated and no longer represents a clean
+baseline. In a product setting, this could happen if users learn that a new recommendation
+system is coming and begin changing how they use the platform before rollout. DID relies on the
+pre period reflecting untreated behavior, so anticipation effects can bias the estimate even if
+the formal before-after structure is still present.
+

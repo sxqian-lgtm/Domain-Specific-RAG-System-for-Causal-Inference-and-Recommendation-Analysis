@@ -1,0 +1,11 @@
+Synthetic control is a longitudinal causal inference method that builds a weighted combination
+of control units to approximate the treated unit's pre-treatment behavior. It is especially
+useful when the intervention affects an aggregate unit such as a city, region, state, or other
+large entity, and when a simple treated-versus-control comparison is not credible. The method
+can be viewed as an extension of the DID idea because it still tries to construct a
+counterfactual trend for the treated case. The difference is that instead of using one raw
+control group average, it uses a data-driven weighted combination of controls that better
+matches the treated unit before treatment. In teaching terms, synthetic control is often
+presented as one of the most important modern innovations in policy evaluation with
+longitudinal data.
+

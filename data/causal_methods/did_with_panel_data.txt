@@ -1,0 +1,10 @@
+Difference-in-differences is especially useful in longitudinal or panel-data settings where
+the same units are observed across time. In this setting, each unit is measured before and
+after treatment, and the analyst compares how treated units change relative to control units.
+This is different from a cross-sectional comparison because time information is part of the
+design. A key advantage of DID is that it can remove some unobserved confounding if those
+unobserved differences are stable across time. That is why DID is widely used in economics,
+policy analysis, and applied business studies. However, this does not mean DID solves every
+confounding problem. It still relies on assumptions such as parallel trends and can fail when
+group-specific shocks, changing composition, or non-comparable time dynamics are present.
+

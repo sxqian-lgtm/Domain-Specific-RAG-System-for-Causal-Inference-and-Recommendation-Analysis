@@ -1,0 +1,10 @@
+The adjustment formula is the bridge between a causal estimand and observable data once a
+valid covariate set has been identified. Its logic is simple: estimate the outcome under
+treatment and control within levels of the adjustment variables, then average those
+quantities over the covariate distribution. This produces an estimate of an interventional
+effect using observational information, provided the graphical assumptions are valid. The
+formula is important because it explains why covariate adjustment is more than a modeling
+habit. It is justified by a causal structure. When the adjustment set is wrong, the formula
+can still produce biased answers even if the regression or propensity model looks
+statistically strong. This is why the graph comes first and the estimator comes second.
+

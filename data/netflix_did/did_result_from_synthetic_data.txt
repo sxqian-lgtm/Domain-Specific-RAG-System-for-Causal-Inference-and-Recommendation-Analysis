@@ -1,0 +1,11 @@
+Using the provided synthetic data, the average viewing pattern suggests a negative DID
+estimate for the recommendation system. In the treated group, average minutes viewed move
+from about 45.401 before treatment to 44.361 after treatment, a before after change of
+about minus 1.040. In the control group, average minutes viewed move from about 44.487 to
+44.687, a change of about plus 0.199. Subtracting the control trend from the treated trend
+gives a DID estimate of about minus 1.240 minutes. This result means the treated group's
+viewing time fell relative to the control group's trend over the same period. The estimate
+should still be interpreted through the lens of the DID assumptions, especially parallel
+trends and the absence of group specific shocks. But as a project note, it provides a
+clear baseline finding for the RAG system to retrieve.
+

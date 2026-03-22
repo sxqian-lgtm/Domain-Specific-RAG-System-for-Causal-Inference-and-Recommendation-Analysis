@@ -1,0 +1,12 @@
+The central identifying assumption behind difference in differences is parallel trends.
+It does not require the treated and control groups to have the same level before treatment.
+Instead, it requires that in the absence of treatment, their average outcomes would have
+moved in parallel over time. This matters because DID estimates the treatment effect by
+subtracting the control group's time trend from the treated group's time trend. If the
+treated group was already on a different trajectory before the intervention, then the DID
+estimate mixes treatment impact with pre existing trend differences. In practice, analysts
+often inspect pre treatment outcomes, compare business context across groups, and discuss
+possible shocks that might break the assumption. A convincing DID analysis explains why
+the control group is a good counterfactual trend for the treated group, not just why the
+groups look similar at one point in time.
+

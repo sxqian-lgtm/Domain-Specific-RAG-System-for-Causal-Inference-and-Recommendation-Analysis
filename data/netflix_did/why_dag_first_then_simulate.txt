@@ -1,0 +1,10 @@
+The project notes highlight an important modeling principle: first define the causal graph,
+then simulate the data. This reverses the usual estimation workflow. In ordinary statistical
+analysis, the analyst starts with observed data and estimates parameters. In synthetic data
+construction, the team instead postulates conditional distributions, chooses parameter values,
+and then forward-simulates observations from those distributions. This process is valuable for
+learning because it forces the team to articulate the causal assumptions behind each variable.
+It also creates a cleaner bridge between causal diagrams, probability factorization, and the
+final dataset used for DID analysis. In short, the synthetic data is useful not only as test
+data but as a structured way to understand the causal system itself.
+

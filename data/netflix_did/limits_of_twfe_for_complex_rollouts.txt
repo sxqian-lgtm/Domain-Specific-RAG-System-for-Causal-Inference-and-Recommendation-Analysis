@@ -1,0 +1,9 @@
+Two-way fixed effects can be a useful baseline representation of the DID idea, but it should
+not be treated as automatically correct for every rollout design. It works most cleanly in the
+simple two-period setup where one group receives treatment after a clean pre period. In more
+complex rollouts, such as staggered adoption or changing treatment intensity across time, TWFE
+can produce estimates that are harder to interpret. This matters for recommendation-system
+analysis because product launches are often gradual rather than perfectly simultaneous. For this
+project, TWFE is still a useful learning framework, but it should be presented as a baseline
+tool rather than the final answer for every longitudinal policy or product setting.
+

@@ -1,0 +1,11 @@
+A simple before after comparison within the treated users is not enough to evaluate the new
+recommendation system. In the synthetic data, treated users drop from about 45.401 minutes
+before treatment to about 44.361 after treatment, which by itself looks negative. However,
+time effects unrelated to treatment may also change viewing behavior. The control group is
+therefore needed to estimate the background trend. In this dataset, the control group moves
+slightly upward over the same period, from about 44.487 to 44.687. DID uses that control
+trend to adjust the treated group's before after change. This is the main reason naive
+before after analysis can mislead recommendation teams: product launches, seasonality, and
+other contextual shocks may happen at the same time as the treatment. Without a comparison
+group, those forces are easy to confuse with causal impact.
+

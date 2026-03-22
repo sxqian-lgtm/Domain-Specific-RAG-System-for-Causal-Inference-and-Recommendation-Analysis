@@ -1,0 +1,11 @@
+In the standard two-period DID setup, the causal target is often the effect of treatment on
+the treated in the post-treatment period. This quantity is sometimes written as the effect on
+the treated at time two, meaning the average difference between the treated units' observed
+post-treatment outcomes and the outcomes those same units would have shown in the post period
+without treatment. This framing matters because DID is usually not estimating a universal
+population effect by default. It is focused on the treated units and their missing
+counterfactual trend. That makes DID conceptually closer to ATT-style reasoning than to a fully
+generalized ATE-style estimand. In project terms, this means DID is answering how the treated
+group changed relative to its untreated counterfactual, not necessarily what would happen if
+every possible user were forced into treatment.
+

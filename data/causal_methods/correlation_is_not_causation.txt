@@ -1,0 +1,12 @@
+One of the first lessons in causal inference is that correlation alone cannot justify a
+causal claim. A positive association between two variables may arise because one causes the
+other, because the causal direction runs the other way, or because a third variable affects
+both. The primer by Pearl and coauthors emphasizes this point with simple examples, such as
+mistakenly concluding that marriage raises income just because the two are positively
+correlated. In recommendation systems, the same warning applies when highly engaged users
+receive a new recommender and also watch more content. Without a causal design, the analyst
+cannot tell whether the recommender caused extra viewing or whether already active users
+were more likely to be assigned to treatment. This is why causal analysis requires an
+explicit design, assumptions, and adjustment strategy rather than relying on raw
+correlations.
+

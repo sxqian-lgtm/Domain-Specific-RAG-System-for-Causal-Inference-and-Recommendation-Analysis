@@ -1,0 +1,10 @@
+Positivity in DID means that the comparison needed for estimation must be feasible in the data.
+At a practical level, both treated and control groups need to exist in the relevant covariate
+and time structure used for comparison. If certain types of units appear only in treatment or
+only in control, then the counterfactual trend becomes hard to estimate credibly. Positivity is
+often less emphasized in informal DID discussions than parallel trends, but it still matters.
+Without enough overlap between the compared groups, even a correctly written DID formula may be
+driven by extrapolation rather than genuine comparison. For recommendation analysis, positivity
+problems can appear if the new system is deployed only to a narrow user segment with no
+comparable untreated users.
+

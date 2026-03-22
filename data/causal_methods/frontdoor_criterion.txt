@@ -1,0 +1,10 @@
+The front-door criterion is a causal identification strategy used when backdoor adjustment is
+not available because the main confounder is unobserved. The idea is to identify a mediator
+that lies on the causal path from treatment to outcome and use that mediator to recover the
+causal effect. This is more demanding than backdoor adjustment because several conditions must
+hold: the treatment must affect the mediator, the mediator must affect the outcome, there must
+be no unblocked backdoor path from treatment to mediator, and backdoor paths from mediator to
+outcome must be blockable by observed variables. In the primer, smoking, tar deposits, and lung
+cancer are used as the classic example. For this project, front-door is useful as a conceptual
+extension showing that causal identification is not limited to ordinary covariate adjustment.
+

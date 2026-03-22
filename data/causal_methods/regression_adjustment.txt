@@ -1,0 +1,12 @@
+Regression adjustment estimates treatment effects by controlling for observed covariates in
+a predictive model for the outcome. In a causal workflow, the point is not only to predict
+minutes viewed or conversion, but to block backdoor paths from confounders into treatment
+and outcome. For recommendation analysis, a regression might include user characteristics,
+baseline engagement, subscription status, and contextual variables such as major releases.
+This can reduce bias when treatment assignment depends on those observed factors. However,
+regression adjustment still relies on correct covariate selection and adequate functional
+form. If important confounders are omitted or nonlinearities are ignored, the estimated
+treatment effect can remain biased. Regression adjustment is often easier to explain to
+stakeholders than more specialized methods, but it should still be justified with causal
+reasoning rather than treated as a purely statistical fix.
+

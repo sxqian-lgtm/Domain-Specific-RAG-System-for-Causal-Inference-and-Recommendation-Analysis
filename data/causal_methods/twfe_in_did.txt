@@ -1,0 +1,10 @@
+The two-way fixed effects model, often abbreviated TWFE, is a common regression framework for
+DID. It includes a group fixed effect, a time fixed effect, and an interaction term between
+post-treatment timing and treatment-group membership. Under the basic two-period setup, the
+coefficient on the interaction term recovers the DID effect. The appeal of TWFE is that it
+translates the DID design into a simple regression specification that is easy to estimate.
+However, the conceptual justification still comes from the DID assumptions, not from regression
+machinery alone. In modern applied work, TWFE is also discussed critically because more complex
+multi-period or staggered-treatment settings can produce misleading estimates if the treatment
+effect is heterogeneous over time.
+

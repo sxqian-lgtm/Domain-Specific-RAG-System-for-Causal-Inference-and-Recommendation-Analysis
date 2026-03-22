@@ -1,0 +1,11 @@
+The Netflix project material frames the business question as a causal evaluation problem:
+does a new recommendation system actually increase viewing time. The presentation describes
+the work as a student analytics project with a workflow that moves from project background,
+to synthetic data design, to DID estimation, and then to production style validation. This
+framing is useful for a domain specific RAG system because it links business language to
+causal inference language. The recommendation system is the treatment, viewing time is the
+outcome, and user level or context variables create potential confounding paths. Rather
+than asking only whether treated users watched more, the project asks whether the new
+system changed viewing time relative to a credible counterfactual. That makes it a strong
+example for connecting recommendation analysis with causal methods such as DID.
+

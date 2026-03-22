@@ -1,0 +1,9 @@
+Even in a recommendation-system case, overlap matters. If the new recommender is assigned only
+to a narrow, highly selected subset of users, then it becomes difficult to compare them to a
+credible untreated group. The project can still compute statistics, but causal interpretation
+gets weaker because the control group may not represent a realistic counterfactual for the
+treated users. This is why rollout logic matters: the broader and more comparable the treated
+and untreated groups are, the more credible the DID or adjusted analysis becomes. In practical
+project terms, overlap is the difference between having a counterfactual trend grounded in real
+similar users and having an estimate driven mostly by extrapolation.
+

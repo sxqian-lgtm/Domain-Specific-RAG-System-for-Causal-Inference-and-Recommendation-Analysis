@@ -1,0 +1,11 @@
+The team discussion around the synthetic recommendation dataset follows a clear causal design
+process rather than random feature generation. The process starts by listing every variable
+that should appear in the data, then drawing a DAG that describes how those variables affect
+each other, then writing the corresponding factorization of the joint distribution, and finally
+choosing a sampling distribution for each conditional term. This is important because it means
+the synthetic data is not only convenient test data. It is intended to reflect an explicit
+causal model. The discussion connects variables such as minutes viewed, age, recommendation
+system assignment, device type, genre preference, subscription type, major releases, and
+baseline engagement. That makes the synthetic dataset a teaching tool for both simulation and
+causal reasoning.
+

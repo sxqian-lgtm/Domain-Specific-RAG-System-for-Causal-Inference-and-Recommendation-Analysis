@@ -1,0 +1,7 @@
+Difference-in-differences (DID) estimates a treatment effect by comparing changes over time
+between a treated group and a comparison group. The key identifying assumption is parallel
+trends: without treatment, the average outcome trend for the treated group would have moved
+in parallel with the control group. A naive DID estimate can be biased when the groups have
+different underlying trends, when treatment timing is correlated with potential outcomes, or
+when other concurrent shocks affect one group differently from the other.
+

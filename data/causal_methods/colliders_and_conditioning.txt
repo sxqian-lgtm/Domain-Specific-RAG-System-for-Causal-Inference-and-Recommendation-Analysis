@@ -1,0 +1,11 @@
+A collider is a variable on a path where two arrows meet head to head. Without conditioning,
+a collider blocks association along that path. But once the analyst conditions on the
+collider, or on a descendant of the collider, the path can become active and induce a
+spurious association. This is why conditioning is not automatically helpful in causal
+analysis. Some variables should be adjusted for, but others should be left alone. Collider
+bias is especially relevant in observational product analytics because analysts often
+condition on variables that are consequences of multiple upstream factors, such as selection
+into a study sample, engagement thresholds, or post treatment filters. A good causal answer
+must distinguish confounders, which often should be blocked, from colliders, which often
+should not be conditioned on.
+

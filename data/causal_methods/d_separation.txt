@@ -1,0 +1,11 @@
+D separation is the graphical rule used to decide whether a path transmits association once
+we condition on a set of variables. A path is blocked when it contains a non collider that
+has been conditioned on, or when it contains a collider that has not been conditioned on and
+has no conditioned descendant. If every path between two variables is blocked, then the graph
+implies a conditional independence relation between them. This tool is important because it
+turns a causal graph into a practical checklist. Analysts can use it to decide whether a set
+of covariates blocks backdoor paths, whether a conditioning choice accidentally opens a
+collider path, and whether a proposed model is consistent with observed dependence patterns.
+In practice, d separation is one of the fastest ways to explain why some adjustments reduce
+bias and other adjustments create bias.
+

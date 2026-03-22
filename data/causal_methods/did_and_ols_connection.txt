@@ -1,0 +1,10 @@
+Difference-in-differences can be written as an ordinary least squares regression with group and
+time indicators and an interaction term between treatment-group membership and the post period.
+In that setup, the coefficient on the interaction term represents the DID estimate. This is one
+reason DID became so popular in applied work: the estimator can be expressed in a regression
+form that is easy to compute. But the regression form does not replace the causal assumptions.
+The interpretation of the coefficient still depends on assumptions such as parallel trends, no
+anticipation, positivity, and a meaningful treatment-control comparison. It is therefore useful
+to remember that OLS is a computational representation of the DID design, not the reason the
+design is causal.
+

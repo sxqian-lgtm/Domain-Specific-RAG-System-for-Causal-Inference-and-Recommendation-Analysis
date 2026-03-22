@@ -1,0 +1,10 @@
+The do operator represents an intervention that sets a treatment variable to a chosen value,
+rather than merely observing that value in the data. This distinction is crucial in causal
+inference. The quantity P of Y given do X asks what would happen to the outcome if the analyst
+or decision maker actively imposed X. That differs from P of Y given X, which is only an
+observational association and may still reflect confounding. Chapter 3 uses this idea to
+show why causal effect estimation is fundamentally different from standard prediction. In
+practice, when a team asks what would happen if a new recommender were deployed, they are
+asking an interventional question, not an associational one. The do operator provides the
+formal language for answering that kind of business question.
+

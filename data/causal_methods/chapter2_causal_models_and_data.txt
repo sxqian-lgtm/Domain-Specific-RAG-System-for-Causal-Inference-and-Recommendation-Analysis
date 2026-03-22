@@ -1,0 +1,11 @@
+Chapter 2 of the primer is about how causal models show up in observed data through
+patterns of dependence and independence. The main idea is that a directed acyclic graph is
+not only a picture of assumed causal relations. It also implies testable statistical
+restrictions. Some pairs of variables should be associated, while others should become
+independent after conditioning on the right set. This matters for causal analysis because it
+lets the analyst check whether a proposed model is at least broadly compatible with the
+observed data. The chapter does not claim that data alone can prove the true causal graph.
+Instead, it shows how graphical assumptions and data patterns talk to each other. For a RAG
+assistant, this chapter is useful when users ask how graphs, observables, and conditional
+independence are connected.
+

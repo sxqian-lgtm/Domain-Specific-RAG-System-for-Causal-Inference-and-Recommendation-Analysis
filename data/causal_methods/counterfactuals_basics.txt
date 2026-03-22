@@ -1,0 +1,11 @@
+Chapter 4 introduces counterfactuals, which ask what would have happened under an alternative
+action for the same unit or situation. A counterfactual query is more specific than an
+average intervention question because it combines evidence about what actually occurred with a
+hypothetical change. For example, instead of asking what would happen on average if all users
+received a new recommender, a counterfactual asks whether a particular user who did not
+receive it would have watched more if they had. Counterfactuals are powerful because they
+support explanation, attribution, and individualized reasoning. They are also more demanding
+because they require a causal model that links observed evidence to latent disturbances and
+alternative worlds. In project discussions, counterfactual language is often present even when
+teams do not use the formal term.
+

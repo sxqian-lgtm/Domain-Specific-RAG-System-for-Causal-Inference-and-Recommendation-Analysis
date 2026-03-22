@@ -1,0 +1,10 @@
+Although DID is designed to reduce bias, it can still fail in several common ways. If the
+treatment and control groups do not satisfy parallel trends, the estimate mixes treatment impact
+with underlying trend differences. If treatment assignment is related to outcome dynamics, DID
+can still suffer from selection bias. Other important threats include omitted variable bias,
+reverse causality in poorly defined designs, mean reversion, and shocks that affect one group
+differently from the other. This is why DID should be treated as a causal design with
+assumptions, not as an automatic correction tool. In practice, researchers often inspect pre
+trends, discuss institutional context, and add robustness checks to reduce the risk of these
+biases.
+

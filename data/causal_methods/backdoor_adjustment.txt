@@ -1,0 +1,12 @@
+The backdoor criterion is a graphical rule for selecting adjustment variables when estimating
+the causal effect of a treatment on an outcome. A valid adjustment set blocks every path from
+treatment to outcome that starts with an arrow into the treatment, while avoiding adjustment
+for descendants of the treatment. Intuitively, the goal is to remove confounding without
+contaminating the estimate with post treatment information. Once a valid set is found, the
+analyst can use the adjustment formula to combine outcome predictions within covariate strata
+into an estimate of the interventional quantity. This is one of the central ideas in Chapter
+3 because it turns a graphical condition into a practical estimation strategy. In a
+recommendation setting, covariates such as age, prior engagement, or subscription status may
+be used for adjustment if they block confounding paths and are not downstream consequences of
+the recommender itself.
+

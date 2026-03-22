@@ -1,0 +1,9 @@
+One of the clearest ways to understand DID is to compare it with two simpler approaches. A
+before-after design looks only at how the treated group changes across time, but it ignores the
+fact that time itself may change outcomes. A cross-sectional treated-versus-control comparison
+looks only at differences between groups after treatment, but it ignores baseline differences
+that may already have existed before the intervention. DID combines both dimensions. It asks how
+the treated group's change compares with the control group's change. This is why DID is often
+explained as a method that removes bias from both simple time comparison and simple group
+comparison, assuming the untreated trends are comparable.
+
