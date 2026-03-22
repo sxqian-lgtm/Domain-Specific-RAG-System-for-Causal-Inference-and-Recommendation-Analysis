@@ -1,0 +1,10 @@
+Why can naive DID be biased
+What assumptions does DID rely on
+Explain ATT versus ATE
+How does IPW adjust for confounders
+What is the backdoor criterion
+What is the difference between P Y given X and P Y given do X
+What is the DID estimate in the synthetic Netflix style data
+Why is before after analysis not enough for evaluating the recommender
+Why does overlap matter in a recommender rollout
+How does this RAG system support causal AI analysis

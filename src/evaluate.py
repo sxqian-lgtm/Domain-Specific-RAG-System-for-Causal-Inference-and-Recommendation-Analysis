@@ -13,6 +13,7 @@ from src.llm_gemini import generate_with_gemini
 
 
 QUESTION_FILE = "data/eval_questions/starter_questions.txt"
+CORE_QUESTION_FILE = "data/eval_questions/core_eval_questions.txt"
 RESULTS_JSONL = "artifacts/evaluation_results.jsonl"
 RESULTS_MD = "evaluation_results.md"
 REPORT_MD = "evaluation_report.md"
@@ -32,6 +33,22 @@ class EvaluationRecord:
 def load_questions(path: str = QUESTION_FILE) -> list[str]:
     lines = Path(path).read_text(encoding="utf-8").splitlines()
     return [line.strip() for line in lines if line.strip()]
+
+
+def load_existing_rows(path: str = RESULTS_JSONL) -> list[dict]:
+    target = Path(path)
+    if not target.exists():
+        return []
+    rows: list[dict] = []
+    for line in target.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return rows
 
 
 def answer_without_rag(question: str, llm_model: str = "gemini-3-flash-preview") -> str:
@@ -108,6 +125,17 @@ relevance, grounding, reasoning_quality, notes
         return EvaluationRecord(question, answer_type, 3, 3, 3, "Judge output parsing failed.")
 
 
+def placeholder_judgment(question: str, answer_type: str) -> EvaluationRecord:
+    return EvaluationRecord(
+        question=question,
+        answer_type=answer_type,
+        relevance=0,
+        grounding=0,
+        reasoning_quality=0,
+        notes="Manual scoring pending.",
+    )
+
+
 def write_jsonl(rows: list[dict], path: str = RESULTS_JSONL) -> None:
     target = Path(path)
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -134,21 +162,27 @@ def write_markdown(rows: list[dict], path: str = RESULTS_MD) -> None:
 def write_report(rows: list[dict], path: str = REPORT_MD) -> None:
     grouped: dict[str, list[dict]] = {"no_rag": [], "rag": []}
     for row in rows:
-        grouped[row["answer_type"]].append(row)
+        if row["answer_type"] in grouped:
+            grouped[row["answer_type"]].append(row)
 
     def avg(items: list[dict], key: str) -> float:
-        return round(sum(item[key] for item in items) / len(items), 2) if items else 0.0
+        scored = [item[key] for item in items if item.get(key, 0) > 0]
+        return round(sum(scored) / len(scored), 2) if scored else 0.0
 
     no_rag = grouped["no_rag"]
     rag = grouped["rag"]
+    question_count = len({row["question"] for row in rows})
+    scored_count = len([row for row in rows if row.get("relevance", 0) > 0])
     lines = [
         "# Evaluation Report",
         "",
         "## Setup",
         "",
         "- Compared direct Gemini answers (`no_rag`) against retrieval-augmented answers (`rag`).",
-        "- Questions were drawn from the project evaluation set in `data/eval_questions/starter_questions.txt`.",
+        "- Questions were drawn from a project evaluation set in `data/eval_questions/`.",
         "- Scoring dimensions: relevance, grounding, reasoning quality.",
+        f"- Questions evaluated so far: {question_count}",
+        f"- Scored answer rows so far: {scored_count}",
         "",
         "## Average Scores",
         "",
@@ -168,53 +202,72 @@ def write_report(rows: list[dict], path: str = REPORT_MD) -> None:
         "",
         "- This is a first-pass evaluation intended for project development and README reporting.",
         "- Scores come from an LLM-based judge, so they should be treated as approximate rather than final human labels.",
+        "- Rows with zero scores were generated in low-quota mode and still need manual or later LLM scoring.",
         "",
     ]
     Path(path).write_text("\n".join(lines), encoding="utf-8")
 
 
-def run_evaluation(question_limit: int | None = None) -> list[dict]:
-    questions = load_questions()
+def run_evaluation(
+    question_limit: int | None = None,
+    questions_path: str = QUESTION_FILE,
+    judge_enabled: bool = True,
+    resume: bool = False,
+) -> list[dict]:
+    questions = load_questions(questions_path)
     if question_limit is not None:
         questions = questions[:question_limit]
 
-    rows: list[dict] = []
+    rows: list[dict] = load_existing_rows() if resume else []
+    completed_pairs = {(row["question"], row["answer_type"]) for row in rows}
     for question in questions:
-        no_rag_answer = _with_retry(answer_without_rag, question)
-        no_rag_eval = _with_retry(judge_answer, question, "no_rag", no_rag_answer)
-        rows.append(
-            {
-                "question": question,
-                "answer_type": "no_rag",
-                "answer": no_rag_answer,
-                "relevance": no_rag_eval.relevance,
-                "grounding": no_rag_eval.grounding,
-                "reasoning_quality": no_rag_eval.reasoning_quality,
-                "notes": no_rag_eval.notes.replace("\n", " "),
-            }
-        )
-        write_jsonl(rows)
-        write_markdown(rows)
-        write_report(rows)
+        if (question, "no_rag") not in completed_pairs:
+            no_rag_answer = _with_retry(answer_without_rag, question)
+            no_rag_eval = (
+                _with_retry(judge_answer, question, "no_rag", no_rag_answer)
+                if judge_enabled
+                else placeholder_judgment(question, "no_rag")
+            )
+            rows.append(
+                {
+                    "question": question,
+                    "answer_type": "no_rag",
+                    "answer": no_rag_answer,
+                    "relevance": no_rag_eval.relevance,
+                    "grounding": no_rag_eval.grounding,
+                    "reasoning_quality": no_rag_eval.reasoning_quality,
+                    "notes": no_rag_eval.notes.replace("\n", " "),
+                }
+            )
+            completed_pairs.add((question, "no_rag"))
+            write_jsonl(rows)
+            write_markdown(rows)
+            write_report(rows)
 
-        rag_answer, docs, route = _with_retry(answer_question, question)
-        rag_eval = _with_retry(judge_answer, question, "rag", rag_answer)
-        rows.append(
-            {
-                "question": question,
-                "answer_type": "rag",
-                "route": route,
-                "retrieved_sources": [doc.metadata.get("filename", "unknown") for doc in docs],
-                "answer": rag_answer,
-                "relevance": rag_eval.relevance,
-                "grounding": rag_eval.grounding,
-                "reasoning_quality": rag_eval.reasoning_quality,
-                "notes": rag_eval.notes.replace("\n", " "),
-            }
-        )
-        write_jsonl(rows)
-        write_markdown(rows)
-        write_report(rows)
+        if (question, "rag") not in completed_pairs:
+            rag_answer, docs, route = _with_retry(answer_question, question)
+            rag_eval = (
+                _with_retry(judge_answer, question, "rag", rag_answer)
+                if judge_enabled
+                else placeholder_judgment(question, "rag")
+            )
+            rows.append(
+                {
+                    "question": question,
+                    "answer_type": "rag",
+                    "route": route,
+                    "retrieved_sources": [doc.metadata.get("filename", "unknown") for doc in docs],
+                    "answer": rag_answer,
+                    "relevance": rag_eval.relevance,
+                    "grounding": rag_eval.grounding,
+                    "reasoning_quality": rag_eval.reasoning_quality,
+                    "notes": rag_eval.notes.replace("\n", " "),
+                }
+            )
+            completed_pairs.add((question, "rag"))
+            write_jsonl(rows)
+            write_markdown(rows)
+            write_report(rows)
 
     return rows
 
@@ -222,8 +275,18 @@ def run_evaluation(question_limit: int | None = None) -> list[dict]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a first-pass evaluation for no-RAG vs RAG.")
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--questions-file", type=str, default=QUESTION_FILE)
+    parser.add_argument("--core", action="store_true", help="Use the smaller core evaluation set.")
+    parser.add_argument("--skip-judge", action="store_true", help="Generate answers without LLM scoring.")
+    parser.add_argument("--resume", action="store_true", help="Resume from existing JSONL rows if present.")
     args = parser.parse_args()
-    rows = run_evaluation(question_limit=args.limit)
+    questions_path = CORE_QUESTION_FILE if args.core else args.questions_file
+    rows = run_evaluation(
+        question_limit=args.limit,
+        questions_path=questions_path,
+        judge_enabled=not args.skip_judge,
+        resume=args.resume,
+    )
     print(f"Saved {len(rows)} evaluation rows.")
 
 
