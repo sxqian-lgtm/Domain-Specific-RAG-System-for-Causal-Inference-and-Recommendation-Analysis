@@ -173,6 +173,7 @@ def write_report(rows: list[dict], path: str = REPORT_MD) -> None:
     rag = grouped["rag"]
     question_count = len({row["question"] for row in rows})
     scored_count = len([row for row in rows if row.get("relevance", 0) > 0])
+    pending_count = len([row for row in rows if row.get("relevance", 0) == 0])
     lines = [
         "# Evaluation Report",
         "",
@@ -202,10 +203,38 @@ def write_report(rows: list[dict], path: str = REPORT_MD) -> None:
         "",
         "- This is a first-pass evaluation intended for project development and README reporting.",
         "- Scores come from an LLM-based judge, so they should be treated as approximate rather than final human labels.",
-        "- Rows with zero scores were generated in low-quota mode and still need manual or later LLM scoring.",
         "",
     ]
+    if pending_count > 0:
+        lines.insert(-1, f"- Rows with zero scores still pending: {pending_count}.")
     Path(path).write_text("\n".join(lines), encoding="utf-8")
+
+
+def rescore_pending_rows(
+    rows: list[dict],
+    target_questions: list[str] | None = None,
+) -> list[dict]:
+    allowed = set(target_questions or [])
+    for row in rows:
+        if allowed and row["question"] not in allowed:
+            continue
+        needs_scoring = (
+            row.get("relevance", 0) == 0
+            or row.get("grounding", 0) == 0
+            or row.get("reasoning_quality", 0) == 0
+            or row.get("notes", "") == "Manual scoring pending."
+        )
+        if not needs_scoring:
+            continue
+        judged = _with_retry(judge_answer, row["question"], row["answer_type"], row["answer"])
+        row["relevance"] = judged.relevance
+        row["grounding"] = judged.grounding
+        row["reasoning_quality"] = judged.reasoning_quality
+        row["notes"] = judged.notes.replace("\n", " ")
+        write_jsonl(rows)
+        write_markdown(rows)
+        write_report(rows)
+    return rows
 
 
 def run_evaluation(
@@ -213,12 +242,15 @@ def run_evaluation(
     questions_path: str = QUESTION_FILE,
     judge_enabled: bool = True,
     resume: bool = False,
+    rescore_pending: bool = False,
 ) -> list[dict]:
     questions = load_questions(questions_path)
     if question_limit is not None:
         questions = questions[:question_limit]
 
     rows: list[dict] = load_existing_rows() if resume else []
+    if rescore_pending and rows:
+        rows = rescore_pending_rows(rows, target_questions=questions)
     completed_pairs = {(row["question"], row["answer_type"]) for row in rows}
     for question in questions:
         if (question, "no_rag") not in completed_pairs:
@@ -279,6 +311,7 @@ def main() -> None:
     parser.add_argument("--core", action="store_true", help="Use the smaller core evaluation set.")
     parser.add_argument("--skip-judge", action="store_true", help="Generate answers without LLM scoring.")
     parser.add_argument("--resume", action="store_true", help="Resume from existing JSONL rows if present.")
+    parser.add_argument("--rescore-pending", action="store_true", help="Score rows that were saved in low-quota mode.")
     args = parser.parse_args()
     questions_path = CORE_QUESTION_FILE if args.core else args.questions_file
     rows = run_evaluation(
@@ -286,6 +319,7 @@ def main() -> None:
         questions_path=questions_path,
         judge_enabled=not args.skip_judge,
         resume=args.resume,
+        rescore_pending=args.rescore_pending,
     )
     print(f"Saved {len(rows)} evaluation rows.")
 
